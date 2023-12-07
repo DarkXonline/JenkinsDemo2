@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseClass {
+	String driverPath = "C:/Devops/gekkodriver/geckodriver.exe";
 	WebDriver driver;
 	
 	@BeforeMethod
@@ -18,7 +19,8 @@ public class BaseClass {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 		} else if (System.getProperty("browser").equalsIgnoreCase("Firefox")) {
-			WebDriverManager.firefoxdriver().setup();
+			System.setProperty("webdriver.gecko.driver", driverPath);
+			//WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		} else if (System.getProperty("browser").equalsIgnoreCase("IE")) {
 			WebDriverManager.iedriver().setup();
